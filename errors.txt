@@ -1,0 +1,496 @@
+➜  AI git:(main) ✗ python3 ai_with_langchain.py                                                                     
+------------------
+<class 'langchain_community.tools.tavily_search.tool.TavilySearchResults'>
+tavily_search_results_json
+------------------
+Raw tool calls from model: [{'name': 'tavily_search_results_json', 'args': {'query': 'weather in sf'}, 'id': 'call_kcg2', 'type': 'tool_call'}]
+Calling: {'name': 'tavily_search_results_json', 'args': {'query': 'weather in sf'}, 'id': 'call_kcg2', 'type': 'tool_call'}
+Back to the model!
+➜  AI git:(main) ✗ python3 ai_with_langchain.py
+------------------
+<class 'langchain_community.tools.tavily_search.tool.TavilySearchResults'>
+tavily_search_results_json
+------------------
+Raw tool calls from model: [{'name': 'tavily_search_results_json', 'args': {'query': 'weather in sf'}, 'id': 'call_je7z', 'type': 'tool_call'}]
+Calling: {'name': 'tavily_search_results_json', 'args': {'query': 'weather in sf'}, 'id': 'call_je7z', 'type': 'tool_call'}
+Back to the model!
+result:
+\n{'messages': [HumanMessage(content='What is the weather in sf?', additional_kwargs={}, response_metadata={}), AIMessage(content='', additional_kwargs={'tool_calls': [{'id': 'call_je7z', 'function': {'arguments': '{"query":"weather in sf"}', 'name': 'tavily_search_results_json'}, 'type': 'function'}]}, response_metadata={'token_usage': {'completion_tokens': 98, 'prompt_tokens': 1259, 'total_tokens': 1357, 'completion_time': 0.15152659, 'prompt_time': 0.153950852, 'queue_time': 0.021315752999999993, 'total_time': 0.305477442}, 'model_name': 'mixtral-8x7b-32768', 'system_fingerprint': 'fp_c5f20b5bb1', 'finish_reason': 'tool_calls', 'logprobs': None}, id='run-4f5ed172-e342-4308-ade7-8654548ce69d-0', tool_calls=[{'name': 'tavily_search_results_json', 'args': {'query': 'weather in sf'}, 'id': 'call_je7z', 'type': 'tool_call'}], usage_metadata={'input_tokens': 1259, 'output_tokens': 98, 'total_tokens': 1357}), ToolMessage(content='[{\'url\': \'https://www.weatherapi.com/\', \'content\': "{\'location\': {\'name\': \'San Francisco\', \'region\': \'California\', \'country\': \'United States of America\', \'lat\': 37.775, \'lon\': -122.4183, \'tz_id\': \'America/Los_Angeles\', \'localtime_epoch\': 1737895357, \'localtime\': \'2025-01-26 04:42\'}, \'current\': {\'last_updated_epoch\': 1737894600, \'last_updated\': \'2025-01-26 04:30\', \'temp_c\': 8.3, \'temp_f\': 46.9, \'is_day\': 0, \'condition\': {\'text\': \'Partly cloudy\', \'icon\': \'//cdn.weatherapi.com/weather/64x64/night/116.png\', \'code\': 1003}, \'wind_mph\': 15.2, \'wind_kph\': 24.5, \'wind_degree\': 47, \'wind_dir\': \'NE\', \'pressure_mb\': 1014.0, \'pressure_in\': 29.95, \'precip_mm\': 0.0, \'precip_in\': 0.0, \'humidity\': 74, \'cloud\': 75, \'feelslike_c\': 4.8, \'feelslike_f\': 40.6, \'windchill_c\': 3.9, \'windchill_f\': 39.0, \'heatindex_c\': 7.0, \'heatindex_f\': 44.5, \'dewpoint_c\': 1.4, \'dewpoint_f\': 34.5
+➜  AI git:(main) ✗ python3 ai_with_langchain.py
+------------------
+<class 'langchain_community.tools.tavily_search.tool.TavilySearchResults'>
+tavily_search_results_json
+------------------
+Traceback (most recent call last):
+  File "/Users/jperrama/Code/AI/ai_with_langchain.py", line 86, in <module>
+    result = abot.graph.invoke({"messages": messages})
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/pregel/__init__.py", line 1961, in invoke
+    for chunk in self.stream(
+                 ~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    ):
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/pregel/__init__.py", line 1670, in stream
+    for _ in runner.tick(
+             ~~~~~~~~~~~^
+        loop.tasks.values(),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        get_waiter=get_waiter,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/pregel/runner.py", line 230, in tick
+    run_with_retry(
+    ~~~~~~~~~~~~~~^
+        t,
+        ^^
+    ...<4 lines>...
+        },
+        ^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/pregel/retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/utils/runnable.py", line 462, in invoke
+    input = step.invoke(input, config, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/utils/runnable.py", line 226, in invoke
+    ret = context.run(self.func, *args, **kwargs)
+  File "/Users/jperrama/Code/AI/ai_with_langchain.py", line 44, in call_groqai
+    message = self.model.invoke(messages)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/runnables/base.py", line 5352, in invoke
+    return self.bound.invoke(
+           ~~~~~~~~~~~~~~~~~^
+        input,
+        ^^^^^^
+        self._merge_configs(config),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        **{**self.kwargs, **kwargs},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 286, in invoke
+    self.generate_prompt(
+    ~~~~~~~~~~~~~~~~~~~~^
+        [self._convert_input(input)],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    ).generations[0][0],
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 790, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 647, in generate
+    raise e
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 637, in generate
+    self._generate_with_cache(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        m,
+        ^^
+    ...<2 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 855, in _generate_with_cache
+    result = self._generate(
+        messages, stop=stop, run_manager=run_manager, **kwargs
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_groq/chat_models.py", line 480, in _generate
+    response = self.client.create(messages=message_dicts, **params)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/groq/resources/chat/completions.py", li
+➜  AI git:(main) ✗ python3 ai_with_langchain.py
+------------------
+<class 'langchain_community.tools.tavily_search.tool.TavilySearchResults'>
+tavily_search_results_json
+------------------
+Traceback (most recent call last):
+  File "/Users/jperrama/Code/AI/ai_with_langchain.py", line 101, in <module>
+    result = abot.graph.invoke({"messages": messages})
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/pregel/__init__.py", line 1961, in invoke
+    for chunk in self.stream(
+                 ~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    ):
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/pregel/__init__.py", line 1670, in stream
+    for _ in runner.tick(
+             ~~~~~~~~~~~^
+        loop.tasks.values(),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        get_waiter=get_waiter,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/pregel/runner.py", line 230, in tick
+    run_with_retry(
+    ~~~~~~~~~~~~~~^
+        t,
+        ^^
+    ...<4 lines>...
+        },
+        ^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/pregel/retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/utils/runnable.py", line 462, in invoke
+    input = step.invoke(input, config, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/utils/runnable.py", line 226, in invoke
+    ret = context.run(self.func, *args, **kwargs)
+  File "/Users/jperrama/Code/AI/ai_with_langchain.py", line 44, in call_groqai
+    message = self.model.invoke(messages)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/runnables/base.py", line 5352, in invoke
+    return self.bound.invoke(
+           ~~~~~~~~~~~~~~~~~^
+        input,
+        ^^^^^^
+        self._merge_configs(config),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        **{**self.kwargs, **kwargs},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 286, in invoke
+    self.generate_prompt(
+    ~~~~~~~~~~~~~~~~~~~~^
+        [self._convert_input(input)],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    ).generations[0][0],
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 790, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 647, in generate
+    raise e
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 637, in generate
+    self._generate_with_cache(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        m,
+        ^^
+    ...<2 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 855, in _generate_with_cache
+    result = self._generate(
+        messages, stop=stop, run_manager=run_manager, **kwargs
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_groq/chat_models.py", line 480, in _generate
+    response = self.client.create(messages=message_dicts, **params)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/groq/resources/chat/completions.py", line 316, in create
+    return self._post(
+➜  AI git:(main) ✗ python3 ai_with_langchain.py
+------------------
+<class 'langchain_community.tools.tavily_search.tool.TavilySearchResults'>
+tavily_search_results_json
+------------------
+Traceback (most recent call last):
+  File "/Users/jperrama/Code/AI/ai_with_langchain.py", line 101, in <module>
+    result = abot.graph.invoke({"messages": messages})
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/pregel/__init__.py", line 1961, in invoke
+    for chunk in self.stream(
+                 ~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    ):
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/pregel/__init__.py", line 1670, in stream
+    for _ in runner.tick(
+             ~~~~~~~~~~~^
+        loop.tasks.values(),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        get_waiter=get_waiter,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/pregel/runner.py", line 230, in tick
+    run_with_retry(
+    ~~~~~~~~~~~~~~^
+        t,
+        ^^
+    ...<4 lines>...
+        },
+        ^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/pregel/retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/utils/runnable.py", line 462, in invoke
+    input = step.invoke(input, config, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/utils/runnable.py", line 226, in invoke
+    ret = context.run(self.func, *args, **kwargs)
+  File "/Users/jperrama/Code/AI/ai_with_langchain.py", line 44, in call_groqai
+    message = self.model.invoke(messages)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/runnables/base.py", line 5352, in invoke
+    return self.bound.invoke(
+           ~~~~~~~~~~~~~~~~~^
+        input,
+        ^^^^^^
+        self._merge_configs(config),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        **{**self.kwargs, **kwargs},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 286, in invoke
+    self.generate_prompt(
+    ~~~~~~~~~~~~~~~~~~~~^
+        [self._convert_input(input)],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    ).generations[0][0],
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 790, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 647, in generate
+    raise e
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 637, in generate
+    self._generate_with_cache(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        m,
+        ^^
+    ...<2 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 855, in _generate_with_cache
+    result = self._generate(
+        messages, stop=stop, run_manager=run_manager, **kwargs
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_groq/chat_models.py", line 480, in _generate
+    response = self.client.create(messages=message_dicts, **params)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/groq/resources/chat/completions.py", line 316, in create
+    return self._post(
+➜  AI git:(main) ✗ python3 ai_with_langchain.py
+------------------
+<class 'langchain_community.tools.tavily_search.tool.TavilySearchResults'>
+tavily_search_results_json
+------------------
+Raw tool calls from model: [{'name': 'tavily_search_results_json', 'args': {'query': 'weather in SF and LA'}, 'id': 'call_bt26', 'type': 'tool_call'}]
+Calling: {'name': 'tavily_search_results_json', 'args': {'query': 'weather in SF and LA'}, 'id': 'call_bt26', 'type': 'tool_call'}
+Back to the model!
+result:
+-------------------------
+The current weather in Los Angeles, CA is clear with a temperature of 62.8°F (17.1°C). In contrast, the weather forecast for Los Angeles predicts a winter storm warning with 6-14 inches of snow expected in the E San Gabriel Mountains. Additionally, there could be impacts to the Interstate 5 Corridor. Unfortunately, I do not have information about the weather in San Francisco as it was not included in the search results.
+-------------------------
+➜  AI git:(main) ✗ python3 ai_with_langchain.py
+------------------
+<class 'langchain_community.tools.tavily_search.tool.TavilySearchResults'>
+tavily_search_results_json
+------------------
+Traceback (most recent call last):
+  File "/Users/jperrama/Code/AI/ai_with_langchain.py", line 84, in <module>
+    result = abot.graph.invoke({"messages": messages})
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/pregel/__init__.py", line 1961, in invoke
+    for chunk in self.stream(
+                 ~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    ):
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/pregel/__init__.py", line 1670, in stream
+    for _ in runner.tick(
+             ~~~~~~~~~~~^
+        loop.tasks.values(),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        get_waiter=get_waiter,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/pregel/runner.py", line 230, in tick
+    run_with_retry(
+    ~~~~~~~~~~~~~~^
+        t,
+        ^^
+    ...<4 lines>...
+        },
+        ^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/pregel/retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/utils/runnable.py", line 462, in invoke
+    input = step.invoke(input, config, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/utils/runnable.py", line 226, in invoke
+    ret = context.run(self.func, *args, **kwargs)
+  File "/Users/jperrama/Code/AI/ai_with_langchain.py", line 44, in call_groqai
+    message = self.model.invoke(messages)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/runnables/base.py", line 5352, in invoke
+    return self.bound.invoke(
+           ~~~~~~~~~~~~~~~~~^
+        input,
+        ^^^^^^
+        self._merge_configs(config),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        **{**self.kwargs, **kwargs},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 286, in invoke
+    self.generate_prompt(
+    ~~~~~~~~~~~~~~~~~~~~^
+        [self._convert_input(input)],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    ).generations[0][0],
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 790, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 647, in generate
+    raise e
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 637, in generate
+    self._generate_with_cache(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        m,
+        ^^
+    ...<2 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 855, in _generate_with_cache
+    result = self._generate(
+        messages, stop=stop, run_manager=run_manager, **kwargs
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_groq/chat_models.py", line 480, in _generate
+    response = self.client.create(messages=message_dicts, **params)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/groq/resources/chat/completions.py", line 316, in create
+    return self._post(
+➜  AI git:(main) ✗ python3 ai_with_langchain.py
+------------------
+<class 'langchain_community.tools.tavily_search.tool.TavilySearchResults'>
+tavily_search_results_json
+------------------
+Traceback (most recent call last):
+  File "/Users/jperrama/Code/AI/ai_with_langchain.py", line 84, in <module>
+    result = abot.graph.invoke({"messages": messages})
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/pregel/__init__.py", line 1961, in invoke
+    for chunk in self.stream(
+                 ~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    ):
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/pregel/__init__.py", line 1670, in stream
+    for _ in runner.tick(
+             ~~~~~~~~~~~^
+        loop.tasks.values(),
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        get_waiter=get_waiter,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/pregel/runner.py", line 230, in tick
+    run_with_retry(
+    ~~~~~~~~~~~~~~^
+        t,
+        ^^
+    ...<4 lines>...
+        },
+        ^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/pregel/retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/utils/runnable.py", line 462, in invoke
+    input = step.invoke(input, config, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langgraph/utils/runnable.py", line 226, in invoke
+    ret = context.run(self.func, *args, **kwargs)
+  File "/Users/jperrama/Code/AI/ai_with_langchain.py", line 44, in call_groqai
+    message = self.model.invoke(messages)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/runnables/base.py", line 5352, in invoke
+    return self.bound.invoke(
+           ~~~~~~~~~~~~~~~~~^
+        input,
+        ^^^^^^
+        self._merge_configs(config),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        **{**self.kwargs, **kwargs},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 286, in invoke
+    self.generate_prompt(
+    ~~~~~~~~~~~~~~~~~~~~^
+        [self._convert_input(input)],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    ).generations[0][0],
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 790, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 647, in generate
+    raise e
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 637, in generate
+    self._generate_with_cache(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        m,
+        ^^
+    ...<2 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_core/language_models/chat_models.py", line 855, in _generate_with_cache
+    result = self._generate(
+        messages, stop=stop, run_manager=run_manager, **kwargs
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/langchain_groq/chat_models.py", line 480, in _generate
+    response = self.client.create(messages=message_dicts, **params)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/groq/resources/chat/completions.py", line 316, in create
+    return self._post(
+➜  AI git:(main) ✗ python3 ai_with_langchain.py
+------------------
+<class 'langchain_community.tools.tavily_search.tool.TavilySearchResults'>
+tavily_search_results_json
+------------------
+Raw tool calls from model: [{'name': 'tavily_search_results_json', 'args': {'query': 'super bowl winner 2024'}, 'id': 'call_0y02', 'type': 'tool_call'}]
+Calling: {'name': 'tavily_search_results_json', 'args': {'query': 'super bowl winner 2024'}, 'id': 'call_0y02', 'type': 'tool_call'}
+Back to the model!
+result:
+-------------------------
+The Kansas City Chiefs won the Super Bowl in 2024. Their defense and quarterback Patrick Mahomes were key contributors to their victory.
+-------------------------
